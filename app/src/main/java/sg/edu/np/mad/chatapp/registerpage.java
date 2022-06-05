@@ -39,7 +39,7 @@ public class registerpage extends AppCompatActivity {
         // check if you already logged in
         if (!MemoryData.getData(this).isEmpty()) {
             Intent intent = new Intent ( registerpage.this, MainActivity.class);
-            intent.putExtra("phone no.", MemoryData.getData(this));
+            intent.putExtra("mobile", MemoryData.getData(this));
             intent.putExtra("name", MemoryData.getName(this));
             intent.putExtra("email", "");
             startActivity(intent);
@@ -82,7 +82,7 @@ public class registerpage extends AppCompatActivity {
                                 Toast.makeText(registerpage.this,"Success", Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent ( registerpage.this, MainActivity.class);
-                                intent.putExtra("phone no.", phoneTxt);
+                                intent.putExtra("mobile", phoneTxt);
                                 intent.putExtra("name", nameTxt);
                                 intent.putExtra("email", emailTxt);
                                 startActivity(intent);

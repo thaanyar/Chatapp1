@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatapp">
         <activity
-            android:name=".Chat"
+            android:name="sg.edu.np.mad.chatapp.chat.Chat"
             android:exported="false" />
         <activity
             android:name="sg.edu.np.mad.chatapp.registerpage"

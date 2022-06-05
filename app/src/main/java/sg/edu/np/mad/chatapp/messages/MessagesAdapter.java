@@ -63,8 +63,10 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             public void onClick(View view) {
 
                 Intent intent = new Intent(context, Chat.class);
+                intent.putExtra("mobile", list2.getPhoneno());
                 intent.putExtra("name", list2.getName());
                 intent.putExtra("profile_pic", list2.getProfilepicture());
+                intent.putExtra("chat_key", list2.getChatKey());
 
                 context.startActivity(intent);
 

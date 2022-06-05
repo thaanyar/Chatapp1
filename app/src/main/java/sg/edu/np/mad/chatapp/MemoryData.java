@@ -12,7 +12,7 @@ public final class MemoryData {
 
     public static void saveData(String data, Context context) {
         try {
-            FileOutputStream fileOutputStream = context.openFileOutput("namee.txt", Context.MODE_PRIVATE);
+            FileOutputStream fileOutputStream = context.openFileOutput("datata.txt", Context.MODE_PRIVATE);
             fileOutputStream.write(data.getBytes());
             fileOutputStream.close();
         } catch (IOException e) {
@@ -42,13 +42,13 @@ public final class MemoryData {
     public static String getData(Context context) {
         String data = "";
         try {
-            FileInputStream fis = context.openFileInput ("nameee.txt");
+            FileInputStream fis = context.openFileInput ("datata.txt");
             InputStreamReader isr = new InputStreamReader (fis);
             BufferedReader bufferedReader = new BufferedReader (isr) ;
             StringBuilder sb = new StringBuilder ();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                sb.toString();
+                sb.append(line);
             }
             data = sb.toString();
 
@@ -67,7 +67,7 @@ public final class MemoryData {
                 StringBuilder sb = new StringBuilder ();
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
-                    sb.toString();
+                    sb.append(line);
                 }
                 data = sb.toString();
 
@@ -86,7 +86,7 @@ public final class MemoryData {
             StringBuilder sb = new StringBuilder ();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                sb.toString();
+                sb.append(line);
             }
             data = sb.toString();
 

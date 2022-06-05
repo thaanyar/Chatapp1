@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class registerpage extends AppCompatActivity {
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://chatapplication-69609-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -36,12 +36,21 @@ public class registerpage extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading...");
 
-
+        // check if you already logged in
+        if (!MemoryData.getData(this).isEmpty()) {
+            Intent intent = new Intent ( registerpage.this, MainActivity.class);
+            intent.putExtra("phone no.", MemoryData.getData(this));
+            intent.putExtra("name", MemoryData.getName(this));
+            intent.putExtra("email", "");
+            startActivity(intent);
+            finish();
+        }
         registerBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
                 progressDialog.show();
+
                 final String nameTxt = name.getText().toString();
                 final String phoneTxt = phone.getText().toString();
                 final String emailTxt = email.getText().toString();
@@ -62,32 +71,31 @@ public class registerpage extends AppCompatActivity {
                             else{
                                 databaseReference.child("users").child(phoneTxt).child("email").setValue(emailTxt);
                                 databaseReference.child("users").child(phoneTxt).child("name").setValue(nameTxt);
+                                databaseReference.child("users").child(phoneTxt).child("profile_pic").setValue("");
+
+                                // save mobile to memory
+                                MemoryData.saveData(phoneTxt, registerpage.this);
+
+                                // save name to memory
+                                MemoryData.saveName(nameTxt, registerpage.this);
 
                                 Toast.makeText(registerpage.this,"Success", Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent ( registerpage.this, MainActivity.class);
                                 intent.putExtra("phone no.", phoneTxt);
-                                intent.putExtra("name",nameTxt);
-                                intent.putExtra("email",emailTxt);
+                                intent.putExtra("name", nameTxt);
+                                intent.putExtra("email", emailTxt);
                                 startActivity(intent);
                                 finish();
                             }
-
-
 
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                             progressDialog.dismiss();
-
                         }
-
-
                     });
-
-
                 }
             }});
 

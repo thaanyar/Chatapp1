@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/back_btn.xml" value="0.155" />
-        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/opo_msg_back.xml" value="0.221" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/my_msg_back.xml" value="0.221" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/opo_msg_back.xml" value="0.17207547789071562" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/round_back_light_10.xml" value="0.155" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/round_back_theme.xml" value="0.155" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/round_back_white_10.xml" value="0.155" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/search_icon.xml" value="0.221" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_chat.xml" value="0.32472826086956524" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_main.xml" value="0.2640625" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_registerpage.xml" value="0.25" />

@@ -10,4 +10,5 @@
     <color name = "theme_color">#3179</color>
     <color name = "theme_color_8">#758CCD3F</color>
     <color name = "theme_color_80">#1E88E5</color>
+    <color name="light_8">#14000000</color>
 </resources>

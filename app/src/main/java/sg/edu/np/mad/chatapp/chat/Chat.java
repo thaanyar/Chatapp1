@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,10 +26,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sg.edu.np.mad.chatapp.MemoryData;
 import sg.edu.np.mad.chatapp.R;
+import sg.edu.np.mad.chatapp.registerpage;
 
 public class Chat extends AppCompatActivity {
 
@@ -84,6 +87,8 @@ public class Chat extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+
+
                 if (chatKey.isEmpty()) {
                     // generate chat key. default chatKey is 1
                     chatKey = "1";
@@ -93,8 +98,11 @@ public class Chat extends AppCompatActivity {
                     }
                 }
 
-                if (snapshot.hasChild("chat")) {
+                chatKey = snapshot.child("chat").hasChild(getMobile + getUserMobile) ? getMobile + getUserMobile : getUserMobile + getMobile;
 
+
+//                Toast.makeText(Chat.this, chatKey, Toast.LENGTH_SHORT).show();
+                if (snapshot.hasChild("chat")) {
                     if (snapshot.child("chat").child(chatKey).hasChild("messages")) {
                         chatLists.clear();
                         for (DataSnapshot messagesSnapshot : snapshot.child("chat").child(chatKey).child("messages").getChildren()) {
@@ -106,9 +114,14 @@ public class Chat extends AppCompatActivity {
                                 final String getMsg = messagesSnapshot.child("msg").getValue(String.class);
 
                                 Timestamp timestamp = new Timestamp(Long.parseLong(messageTimestamps));
+
                                 Date date = new Date(timestamp.getTime());
                                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                                 SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
+
+                                simpleDateFormat.setTimeZone(TimeZone.getDefault());
+                                simpleTimeFormat.setTimeZone(TimeZone.getDefault());
+
 
                                 ChatList chatList = new ChatList(getMobile, getName, getMsg, simpleDateFormat.format(date), simpleTimeFormat.format(date));
                                 chatLists.add(chatList);
@@ -147,7 +160,7 @@ public class Chat extends AppCompatActivity {
 
 
                 //get current timestamps
-                final String currentTimestamp = String.valueOf(System.currentTimeMillis()).substring(0, 10);
+                final String currentTimestamp = String.valueOf(System.currentTimeMillis());
 
 
                 databaseReference.child("chat").child(chatKey).child("user_1").setValue(getUserMobile);
@@ -158,6 +171,7 @@ public class Chat extends AppCompatActivity {
                 // clear edit text
                 messageEditText.setText("");
             }
+
         });
 
         backBtn.setOnClickListener(new View.OnClickListener() {

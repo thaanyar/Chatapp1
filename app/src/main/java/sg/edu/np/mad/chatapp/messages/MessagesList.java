@@ -2,18 +2,21 @@ package sg.edu.np.mad.chatapp.messages;
 
 public class MessagesList {
 
-    private String name,phoneno,lastMessage, profilepicture, chatKey;
+    private String name,phoneno,lastMessage, profilepicture, chatKey, userType;
+
+    private boolean granted;
 
     private int unseenMessages;
 
-    public MessagesList(String name,String phoneno, String lastMessage, String profilepicture, int unseenMessages, String chatKey) {
+    public MessagesList(String name,String phoneno, String lastMessage, String profilepicture, int unseenMessages, String chatKey, Boolean granted, String userType) {
         this.name = name;
         this.phoneno = phoneno;
         this.lastMessage = lastMessage;
         this.profilepicture = profilepicture;
         this.unseenMessages = unseenMessages;
         this.chatKey = chatKey;
-
+        this.granted = granted;
+        this.userType = userType;
     }
 
     public String getName() {
@@ -38,5 +41,13 @@ public class MessagesList {
 
     public String getChatKey() {
         return chatKey;
+    }
+
+    public boolean isGranted() {
+        return granted;
+    }
+
+    public String getUserType() {
+        return userType;
     }
 }

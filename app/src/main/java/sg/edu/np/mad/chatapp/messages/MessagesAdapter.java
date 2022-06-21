@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import sg.edu.np.mad.chatapp.MainActivity;
 import sg.edu.np.mad.chatapp.MemoryData;
 import sg.edu.np.mad.chatapp.R;
 import sg.edu.np.mad.chatapp.chat.Chat;
@@ -173,6 +175,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                                         databaseReference.child("chat").child(list2.getPhoneno() + getUserMobile).child("permission").child("fromUser").setValue(getUserMobile);
                                         databaseReference.child("chat").child(list2.getPhoneno() + getUserMobile).child("permission").child("granted").setValue(false);
                                         databaseReference.child("chat").child(list2.getPhoneno() + getUserMobile).child("permission").child("toUser").setValue(list2.getPhoneno());
+
+                                        Toast.makeText(view.getContext(), "Request sent!", Toast.LENGTH_SHORT).show();
+                                        messagesLists.clear();
                                         Log.d("test", "Request sent! ");
                                         dialogInterface.dismiss();
 

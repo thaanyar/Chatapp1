@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String userType = "";
 
-    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -92,8 +92,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 progressDialog.dismiss();
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) { progressDialog.dismiss();}
+            public void onCancelled(@NonNull DatabaseError error) {
+                progressDialog.dismiss();
+            }
         });
         Log.d("test", "My name: " + name + "My Number:" + mobile);
 
@@ -106,13 +109,15 @@ public class MainActivity extends AppCompatActivity {
                 granted = false;
                 lastMessage = "";
                 messagesLists.clear();
+                final int userCount = (int) snapshot.child("users").getChildrenCount();
+                Log.d("test", String.valueOf(userCount) + " this oneee");
 
                 for (DataSnapshot dataSnapshot : snapshot.child("users").getChildren()) {
                     final String getMobile = dataSnapshot.getKey();
-                    final int userCount = (int) dataSnapshot.getChildrenCount();
+//                    final int userCount = (int) dataSnapshot.ge();
 
                     dataSet = false;
-
+//
                     if (!getMobile.equals(mobile)) {
                         final String getName = dataSnapshot.child("name").getValue(String.class);
                         final String getProfilePic = dataSnapshot.child("profile_pic").getValue(String.class);
@@ -125,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                                 lastMessage = "";
                                 unseenMessages = 0;
                                 userType = "";
-                                int getChatCounts = (int)snapshot.getChildrenCount();
+                                int getChatCounts = (int) snapshot.getChildrenCount();
 
                                 if (getChatCounts > 0) {
 
@@ -146,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
                                                 lastMessage = getName + " wants to chat with you!";
                                                 unseenMessages = 1;
                                                 userType = "recipient";
+
+
 //
                                                 Log.d("test", chatKey + " " + pToUser + " " + getName + " no is " + getMobile);
                                                 // For sender: check if recipient accept
@@ -163,19 +170,20 @@ public class MainActivity extends AppCompatActivity {
 
                                 }
 
+                                dataSet = true;
+                                MessagesList messagesList = new MessagesList(getName, getMobile, lastMessage, getProfilePic, unseenMessages,
+                                        getMobile, granted, userType);
+                                Log.d("test", String.valueOf(messagesLists.size() + 1) + " this one");
+                                if (messagesLists.size() + 1 < userCount) {
 
-                                Log.d("test", String.valueOf(messagesLists.size()));
-                                    dataSet = true;
-                                    MessagesList messagesList = new MessagesList(getName, getMobile, lastMessage, getProfilePic, unseenMessages,
-                                            getMobile, granted, userType);
-                                    if ((userCount) != messagesLists.size()) {
-                                        messagesLists.add(messagesList);
-                                        messagesAdapter.updateData(messagesLists);
-                                    }
 
+                                    messagesLists.add(messagesList);
+                                    messagesAdapter.updateData(messagesLists);
+                                }
 
 
                             }
+
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -184,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

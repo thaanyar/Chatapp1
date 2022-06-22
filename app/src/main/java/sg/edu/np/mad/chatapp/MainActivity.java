@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
                 final String profilepictureUrl = snapshot.child("users").child(mobile).child("profile_pic").getValue(String.class);
 
-                if (!profilepictureUrl.isEmpty()) {
+
+                if (profilepictureUrl == null || !profilepictureUrl.isEmpty()) {
                     // set profile pic to circle image view
                     Picasso.get().load(profilepictureUrl).into(userProfilePic);
                 }
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!getMobile.equals(mobile)) {
                         final String getName = dataSnapshot.child("name").getValue(String.class);
                         final String getProfilePic = dataSnapshot.child("profile_pic").getValue(String.class);
-
+                        final String getBio = dataSnapshot.child("bio").getValue(String.class);
                         databaseReference.child("chat").addValueEventListener(new ValueEventListener() {
 
                             @Override
@@ -152,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
                                                 unseenMessages = 1;
                                                 userType = "recipient";
 
-
-//
                                                 Log.d("test", chatKey + " " + pToUser + " " + getName + " no is " + getMobile);
                                                 // For sender: check if recipient accept
 
@@ -172,10 +171,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 dataSet = true;
                                 MessagesList messagesList = new MessagesList(getName, getMobile, lastMessage, getProfilePic, unseenMessages,
-                                        getMobile, granted, userType);
+                                        getMobile, granted, userType, getBio);
                                 Log.d("test", String.valueOf(messagesLists.size() + 1) + " this one");
                                 if (messagesLists.size() + 1 < userCount) {
-
 
                                     messagesLists.add(messagesList);
                                     messagesAdapter.updateData(messagesLists);

@@ -63,7 +63,17 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             Picasso.get().load(list2.getProfilepicture()).into(holder.profilepicture);
         }
 
+        // if bio empty
+        if (list2.getBio() != null) {
+            holder.bio.setText("• " + list2.getBio());
+        } else {
+            holder.bio.setText("");
+        }
+
+
+
         holder.name.setText(list2.getName());
+
         holder.lastMessage.setText(list2.getLastMessage());
 
         if (list2.getUnseenMessages() == 0) {
@@ -177,8 +187,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                                         databaseReference.child("chat").child(list2.getPhoneno() + getUserMobile).child("permission").child("toUser").setValue(list2.getPhoneno());
 
                                         Toast.makeText(view.getContext(), "Request sent!", Toast.LENGTH_SHORT).show();
-                                        messagesLists.clear();
-                                        Log.d("test", "Request sent! ");
                                         dialogInterface.dismiss();
 
                                     }
@@ -186,7 +194,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                                 alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Log.d("test", "Cancelled req! ");
                                         dialogInterface.dismiss();
                                     }
                                 });
@@ -212,15 +219,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                         }
                     });
 
-//                    Log.d("test", "chkkey: " + chkKey);
-
-//                    Intent intent = new Intent(context, Chat.class);
-//                    intent.putExtra("mobile", list2.getPhoneno());
-//                    intent.putExtra("name", list2.getName());
-//                    intent.putExtra("profile_pic", list2.getProfilepicture());
-//                    intent.putExtra("chat_key", list2.getChatKey());
-//
-//                    context.startActivity(intent);
                 }
             }
         });
@@ -241,6 +239,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
         private TextView name;
         private TextView lastMessage;
         private TextView unseenMessages;
+        private TextView bio;
         private LinearLayout rootLayout;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -248,6 +247,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
 
             profilepicture = itemView.findViewById(R.id.profilepicture);
             name = itemView.findViewById(R.id.name);
+            bio = itemView.findViewById(R.id.bio);
             lastMessage = itemView.findViewById(R.id.lastMessages);
             unseenMessages = itemView.findViewById(R.id.unseenMessages);
             rootLayout = itemView.findViewById(R.id.rootLayout);

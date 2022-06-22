@@ -35,14 +35,31 @@
                 android:orientation="vertical"
                 tools:ignore="NotSibling">
 
-                <TextView
-                    android:id="@+id/name"
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="Fullname"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="Fullname"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bio"
+                        android:paddingStart="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="Bio"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+
 
                 <TextView
                     android:id="@+id/lastMessages"

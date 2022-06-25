@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +38,8 @@ import sg.edu.np.mad.chatapp.R;
 import sg.edu.np.mad.chatapp.chat.Chat;
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyViewHolder> {
+    private FirebaseAuth mAuth;
+
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private List<MessagesList> messagesLists;
     private final Context context;
@@ -43,7 +47,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
     private String getUserMobile;
     private Boolean chkKey;
 
+
+
+
     public MessagesAdapter(List<MessagesList> messagesLists, Context context) {
+
         this.messagesLists = messagesLists;
         this.context = context;
     }
@@ -56,7 +64,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MessagesAdapter.MyViewHolder holder, int position) {
-
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String getNumber = currentUser.getDisplayName();
         MessagesList list2 = messagesLists.get(position);
 
         if (!list2.getProfilepicture().isEmpty()) {
@@ -98,7 +108,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             @Override
             public void onClick(View view) {
                 chkKey = false;
-                getUserMobile = MemoryData.getData(view.getContext());
+                getUserMobile = getNumber;
 
                 // get data of chatkey
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -113,7 +123,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                 });
 
                 if (list2.getUserType().contains("recipient")) {
-                    Log.d("test", "i am recipient ");
+
 
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(view.getRootView().getContext());
                     alertDialog.setMessage("Allow " + list2.getName() + " to chat with you?");
@@ -152,7 +162,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                 }
 
                 if (list2.getUserType().contains("sender")) {
-                    Log.d("test", "i am sender ");
+
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(view.getRootView().getContext());
                     alertDialog.setMessage(list2.getName() + " have not accept your chat request.");
 
@@ -160,7 +170,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
-                            Log.d("test", "move on ");
+
                             dialogInterface.dismiss();
                         }
                     });
@@ -175,7 +185,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                             final Boolean hasKey = snapshot.child("chat").hasChild(chatKey);
 
                             if (!hasKey) {
-                                Log.d("test", hasKey.toString());
+
                                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(view.getRootView().getContext());
                                 alertDialog.setMessage("Send chat request to " + list2.getName() + "?");
 

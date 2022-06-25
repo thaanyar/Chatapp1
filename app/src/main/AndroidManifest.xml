@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatapp">
         <activity
-            android:name="sg.edu.np.mad.chatapp.chat.Chat"
+            android:name=".Login"
             android:exported="false" />
         <activity
-            android:name="sg.edu.np.mad.chatapp.registerpage"
+            android:name=".StartUp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".chat.Chat"
+            android:exported="false" />
+        <activity
+            android:name=".registerpage"
             android:exported="true"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

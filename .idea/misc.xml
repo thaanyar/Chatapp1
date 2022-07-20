@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/back_btn.xml" value="0.155" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/ic_chat.xml" value="0.1635" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/my_msg_back.xml" value="0.221" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/opo_msg_back.xml" value="0.17207547789071562" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/round_back_light_10.xml" value="0.155" />
@@ -11,12 +12,18 @@
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/round_back_white_10.xml" value="0.155" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/drawable/search_icon.xml" value="0.221" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_chat.xml" value="0.32472826086956524" />
-        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_login.xml" value="0.4411231884057971" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_login.xml" value="0.3739495798319328" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_main.xml" value="0.2640625" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_nav_main_page.xml" value="0.2085889570552147" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_registerpage.xml" value="0.25" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_start_up.xml" value="0.4179431072210066" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/activity_story_fragment.xml" value="0.4125" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/chat_adapter_layout.xml" value="0.28125" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/fragment_chat.xml" value="0.4125" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/fragment_story.xml" value="0.2988679352838745" />
         <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/messages_adapter_layout.xml" value="0.2640625" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/layout/story_adapter_layout.xml" value="0.325" />
+        <entry key="..\:/Users/fitzg/Desktop/Chatapp1/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.4119791666666667" />
         <entry key="..\:/Users/thaan/Desktop/y3s1/app/src/main/res/drawable/round_back_light_10.xml" value="0.1205" />
         <entry key="..\:/Users/thaan/Desktop/y3s1/app/src/main/res/drawable/round_back_theme.xml" value="0.1" />
         <entry key="..\:/Users/thaan/Desktop/y3s1/app/src/main/res/drawable/round_back_white_10.xml" value="0.1" />

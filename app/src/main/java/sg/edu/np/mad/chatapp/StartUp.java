@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sg.edu.np.mad.chatapp.bottomNav.NavMainPage;
+
 public class StartUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
@@ -44,7 +46,7 @@ public class StartUp extends AppCompatActivity {
 //                String bio = snapshot.child("users").child(getNumber).child("bio").getValue(String.class);
 //                String email = snapshot.child("users").child(getNumber).child("email").getValue(String.class);
 
-                    Intent intent = new Intent(StartUp.this, MainActivity.class);
+                    Intent intent = new Intent(StartUp.this, NavMainPage.class);
                     intent.putExtra("mobile", getNumber);
                     intent.putExtra("name", name);
                     intent.putExtra("email", "");

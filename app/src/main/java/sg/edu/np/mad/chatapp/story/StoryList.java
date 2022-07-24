@@ -2,13 +2,15 @@ package sg.edu.np.mad.chatapp.story;
 
 public class StoryList {
 
-    private String username, prof_url, story_url;
+    private String username, prof_url, story_url, caption;
+    private Long date;
 
-
-    public StoryList(String username, String prof_url, String story_url) {
+    public StoryList(String username, String prof_url, String story_url, String caption ,Long date) {
         this.username = username;
         this.prof_url = prof_url;
+        this.caption = caption;
         this.story_url = story_url;
+        this.date = date;
     }
 
     public String getUsername() {
@@ -23,5 +25,11 @@ public class StoryList {
         return story_url;
     }
 
+    public String getCaption() {
+        return caption;
+    }
 
+    public Long getDate() {
+        return date;
+    }
 }

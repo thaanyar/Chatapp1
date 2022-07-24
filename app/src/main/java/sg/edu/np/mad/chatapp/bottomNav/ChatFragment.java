@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +33,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import sg.edu.np.mad.chatapp.MainActivity;
 import sg.edu.np.mad.chatapp.R;
+import sg.edu.np.mad.chatapp.Session;
 import sg.edu.np.mad.chatapp.StartUp;
 import sg.edu.np.mad.chatapp.databinding.FragmentChatBinding;
 import sg.edu.np.mad.chatapp.messages.MessagesAdapter;
@@ -42,10 +45,10 @@ public class ChatFragment extends Fragment {
     private FragmentChatBinding binding;
     private final List<MessagesList> messagesLists = new ArrayList<>();
     private String mobile = "";
-    private String email;
-    private String name;
+//    private String email;
+//    private String name;
     private Boolean granted;
-
+    Session session;
     private int unseenMessages = 0;
 
     private String chatKey = "";
@@ -60,8 +63,6 @@ public class ChatFragment extends Fragment {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class ChatFragment extends Fragment {
         View root = binding.getRoot();
 
         final CircleImageView userProfilePic = root.findViewById(R.id.userProfilePic);
-
+        session = new Session(getContext());
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         fab = root.findViewById(R.id.fab);
@@ -122,8 +123,11 @@ public class ChatFragment extends Fragment {
             mobile = getActivity().getIntent().getStringExtra("mobile");
         }
 
-        email = getActivity().getIntent().getStringExtra("email");
-        name = getActivity().getIntent().getStringExtra("name");
+//        email = getActivity().getIntent().getStringExtra("email");
+//        Toast.makeText(getContext(), session.getusename(), Toast.LENGTH_SHORT).show();
+//        name = getActivity().getIntent().getStringExtra("name");
+
+
 
         messagesRecyclerView.setHasFixedSize(true);
         messagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
